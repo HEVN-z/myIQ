@@ -1,6 +1,5 @@
 from iqoptionapi.stable_api import IQ_Option
 import logging
-import random
 logging.basicConfig(level=logging.DEBUG,format='%(asctime)s %(message)s')
 email = "e-exe-e@live.com"
 password = "meHeavenz13"
