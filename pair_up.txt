@@ -1,0 +1,8 @@
+eurusd
+eurjpy
+eurchf
+gbpusd
+gbpjpy
+audusd
+nzdusd
+usdcad

@@ -1,3 +1,4 @@
+from datetime import datetime
 from asyncio.windows_events import NULL
 from concurrent.futures import thread
 import time
@@ -22,9 +23,9 @@ isBuy = False
 target_time = 30
 timer = 0
 Action = "hold"
-rate1 = 45
+rate1 = 55
 rate2 = 40
-rate3 = 40
+rate3 = 25
 
 balance = bot.get_balance()
 print("Your balance is",balance,"\n What you want to play")
@@ -32,20 +33,27 @@ print("Your balance is",balance,"\n What you want to play")
 Money = input("Money amount : ")
 if Money == "" or Money == NULL:
     Money = 1
-float(Money)
-print("Default money =",Money)
+    print("Default money =",Money)
+else:
+    Money = float(Money)
+    print("Your money is",Money)
 
 Active = input("Currency pair : ")
 if Active == "" or Active == NULL:
     Active = "EURUSD"
-Active.upper()
-print("Default currency pair =",Active)
+    Active = Active.upper()
+    print("Default currency pair =",Active)
+else:
+    Active = Active.upper()
+    print("Your currency pair is",Active)
 
 expirations_mode = input("Expired mode : ")
 if expirations_mode == "" or expirations_mode == NULL:
     expirations_mode = 1
-int(expirations_mode)
-print("Default expired mode =",expirations_mode)
+    print("Default expired mode =",expirations_mode)
+else:
+    expirations_mode = int(expirations_mode)
+    print("Your expired mode is",expirations_mode)
 
 # indicator function
 
@@ -124,41 +132,65 @@ def ind():
     print("MOV 15 minutes:", mov_fifty_min)
     print("Average 15 minutes:", average_fifty)'''
 
-    return average_one, average_five, average_fifty
+    return osc_one_min, osc_five_min, osc_fifty_min, mov_one_min, mov_five_min, mov_fifty_min, average_one, average_five, average_fifty
 
+def check_buy(average1, average5, average15):
+    if average1 > rate1 and average5 > rate2 and average15 > rate3:
+        return "call"
+    elif average1 < (rate1*-1) and average5 < (rate2*-1) and average15 < (rate3*-1):
+        return "put"
+    else:
+        return "hold"
 #Buy Loop
 
 while True:
-    average_one, average_five, average_fifty = ind()
+    now = datetime.now()
+    dt_object = datetime.timestamp(now)
+    date_stamp = datetime.fromtimestamp(dt_object)
+
 
     purchase_time = bot.get_remaning(expirations_mode)-1-target_time
+    osc_one_min, osc_five_min, osc_fifty_min, mov_one_min, mov_five_min, mov_fifty_min, average_one, average_five, average_fifty = ind()
     
     #Slower timer print out
-    if timer != average_one.__floor__():
-        print("Average 1 minute:", average_one.__floor__())
-        print("Average 5 minutes:", average_five.__floor__())
-        print("Average 15 minutes:", average_fifty.__floor__())
-        print("Time update",purchase_time)
-        timer = average_one.__floor__()
+    #if timer != average_one.__floor__():
+    #    print("Average 1 minute\t:", average_one.__floor__(), "\tOSC 1 minute\t:", osc_one_min.__floor__(), "\tMOV 1 minute\t:", mov_one_min.__floor__())
+    #    print("Average 5 minutes\t:", average_five.__floor__(), "\tOSC 5 minutes\t:", osc_five_min.__floor__(), "\tMOV 5 minutes\t:", mov_five_min.__floor__())
+    #    print("Average 15 minutes\t:", average_fifty.__floor__(), "\tOSC 15 minutes\t:", osc_fifty_min.__floor__(), "\tMOV 15 minutes\t:", mov_fifty_min.__floor__())
+    #    print("Time update",purchase_time)
+    #    print("dt_object =", date_stamp)
+    #    timer = average_one.__floor__()
 
     #Buy conditions
 
-    if average_one > rate1 and average_five > rate2 and average_fifty > rate3:
+    if average_one.__floor__() > rate1 and average_five.__floor__() > rate2 and average_fifty.__floor__() > rate3:
         Action = "call"
-    elif average_one < (rate1*-1) and average_five < (rate2*-1) and average_fifty < (rate3*-1):
+    elif average_one.__floor__() < (rate1*-1) and average_five.__floor__() < (rate2*-1) and average_fifty.__floor__() < (rate3*-1):
         Action = "put"
     else:
         Action = "hold"
+
+    '''eurusd_average = ind("EURUSD")["average"]
+    average1,average2,average3 = eurusd_average
+    action_eurusd = check_buy(average1,average2,average3)
+
+    gbpusd_average = ind("GBPUSD")["average"]
+    average1,average2,average3 = gbpusd_average
+    action_gbpusd = check_buy(average1,average2,average3)'''
 
     #Buy
 
     if purchase_time==target_time and isBuy == False and Action != "hold":
         check, id = bot.buy(Money,Active,Action,expirations_mode)
+        print("!buy!",Action,Active)
         isBuy = True
         if check:
-            print("!buy!",Action)
-            print(bot.check_win_v4(id)[0],"you got",round(bot.check_win_v4(id)[1],2))
+            print("time stamp =", date_stamp)
+            print("\t\t \"### ",bot.check_win_v4(id)[0],"you got",round(bot.check_win_v4(id)[1],2),"###\"")
         else:
+            print("time stamp =", date_stamp)
             print("buy fail")
+
     if purchase_time<target_time -5:
         isBuy = False
+    
