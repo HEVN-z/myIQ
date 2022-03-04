@@ -1,7 +1,5 @@
 from datetime import datetime
 from asyncio.windows_events import NULL
-from concurrent.futures import thread
-import time
 from iqoptionapi.stable_api import IQ_Option
 
 email = "dummy.esper@gmail.com"
@@ -23,9 +21,9 @@ isBuy = False
 target_time = 30
 timer = 0
 Action = "hold"
-rate1 = 55
+rate1 = 50
 rate2 = 40
-rate3 = 25
+rate3 = 30
 
 balance = bot.get_balance()
 print("Your balance is",balance,"\n What you want to play")
@@ -182,9 +180,9 @@ while True:
 
     if purchase_time==target_time and isBuy == False and Action != "hold":
         check, id = bot.buy(Money,Active,Action,expirations_mode)
-        print("!buy!",Action,Active)
         isBuy = True
         if check:
+            print("!buy!",Action,Active)
             print("time stamp =", date_stamp)
             print("\t\t \"### ",bot.check_win_v4(id)[0],"you got",round(bot.check_win_v4(id)[1],2),"###\"")
         else:
