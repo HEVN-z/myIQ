@@ -33,24 +33,23 @@ root.resizable(False, False)
 
 # Variables
 
-text = 1
+
 
 # Commands
 
-def cmd_login(text):
-    text+=1
-    print(text)
+def cmd_login():
+    print("Login")
 
 # Widgeets
 
 lbUser = Label(root, text="User(email) :").grid(row=0, column=0)
 lbPass = Label(root, text="Password    :").grid(row=1, column=0)
-lbTEXT = Label(root, text=text).grid(row=2, column=0)
+lbTEXT = Label(root, text="text").grid(row=2, column=0)
 
 enUser = Entry(root).grid(row=0, column=1)
 enPass = Entry(root).grid(row=1, column=1)
 
-btn = Button(root, text="Login", command=lambda:cmd_login(text)).grid(row=0, column=3)
+btn = Button(root, text="Login", command=lambda:cmd_login()).grid(row=0, column=3)
 
 # Main Loop
 

@@ -10,7 +10,7 @@ from iqoptionapi.stable_api import IQ_Option
 from indicators.indic_psar import PSAR
 
 from integrates.MoneyManavement import MoneyManager
-from integrates.main_ui import Main_UI
+#from main_ui import Main_UI
 
 from currency.EURUSD import EURUSD
 
@@ -70,7 +70,7 @@ async def buy():
     print("buy")
     await asyncio.sleep(2)
 
-'''while True:
+while True:
     signal = input("Command: ")
     if signal == "buy":
         check, id = bot.buy(amount,"EURUSD","call",1)
@@ -92,7 +92,7 @@ async def buy():
         break
     else:
         pass
-print("End process")'''
+print("End process")
 
 # Auto bot
 
