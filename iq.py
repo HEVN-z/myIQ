@@ -10,6 +10,7 @@ from iqoptionapi.stable_api import IQ_Option
 from indicators.indic_psar import PSAR
 
 from integrates.MoneyManavement import MoneyManager
+from integrates.main_ui import Main_UI
 
 from currency.EURUSD import EURUSD
 
@@ -17,6 +18,8 @@ from currency.EURUSD import EURUSD
 
 indic_psar = PSAR()
 mm = MoneyManager()
+#ui = Main_UI()
+#thread = threading.Thread(target=ui).start()
 
 # login and connection
 
