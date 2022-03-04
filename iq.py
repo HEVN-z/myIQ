@@ -1,19 +1,24 @@
-# import api
+# import libraries
 
 import time
+import asyncio
+import threading
 from iqoptionapi.stable_api import IQ_Option
 
 # import class
 
-from indic_psar import PSAR
-from mm import MoneyManager
+from indicators.indic_psar import PSAR
+
+from integrates.MoneyManavement import MoneyManager
+
+from currency.EURUSD import EURUSD
 
 # Stand-in
 
 indic_psar = PSAR()
 mm = MoneyManager()
 
-# login connection
+# login and connection
 
 email = "dummy.esper@gmail.com"
 password = "12651265exe"
@@ -35,12 +40,13 @@ ALL_Asset= bot.get_all_open_time()
 #print("ALL_Asset[0]:", ALL_Asset[0])
 #print(ALL_Asset["binary"]["EURUSD"]["open"])
 
-goal = "EURUSD"
 #print("get candles")
 #candles = bot.get_candles(goal, 60,3, time.time())
 #print("candles:", candles)
 #indicator = bot.get_technical_indicators(goal)
 #print("\"indicator:\" = ", indicator)
+
+# Balance Management
 
 print(mm.MoneySplit(bot.get_balance())[0])
 
@@ -49,9 +55,19 @@ bot.change_balance(balance_type)
 print("Balance: ",bot.get_balance())
 amount = float(input("amount: "))
 
+goal = "EURUSD"
+Action = "call"
+expirations_mode = 1
+target_time = 30
+
 # Signal Command
 
-while True:
+async def buy():
+    bot.buy(amount,goal,Action,expirations_mode)
+    print("buy")
+    await asyncio.sleep(2)
+
+'''while True:
     signal = input("Command: ")
     if signal == "buy":
         check, id = bot.buy(amount,"EURUSD","call",1)
@@ -73,4 +89,14 @@ while True:
         break
     else:
         pass
-print("End process")
+print("End process")'''
+
+# Auto bot
+
+def bot():
+    while True:
+        purchase_time = bot.get_remaning(expirations_mode)-1-target_time
+        print(purchase_time)
+        if purchase_time==30:
+            asyncio.run(buy())
+
