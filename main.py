@@ -23,7 +23,10 @@ def cmd_login():
 lbUser = Label(root,text="User(email) :",font=10).grid(row=0,column=0)
 lbPass = Label(root,text="Password    :",font=10).grid(row=1,column=0)
 
-btnLogin = Button(root,text="Login",font=10,command=lambda:cmd_login()).grid(row=0,column=3)
+btnLogin = Button(root,text="Login",font=10,command=lambda:cmd_login()).grid(row=0,column=2)
+
+enUser = Entry(root,text="username@",textvariable=StringVar()).grid(row=0,column=1)
+enPass = Entry(root,text="password",textvariable=StringVar()).grid(row=1,column=1)
 
 
 # Loop running
