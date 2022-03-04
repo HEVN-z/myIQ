@@ -151,13 +151,17 @@ while True:
     osc_one_min, osc_five_min, osc_fifty_min, mov_one_min, mov_five_min, mov_fifty_min, average_one, average_five, average_fifty = ind()
     
     #Slower timer print out
-    #if timer != average_one.__floor__():
-    #    print("Average 1 minute\t:", average_one.__floor__(), "\tOSC 1 minute\t:", osc_one_min.__floor__(), "\tMOV 1 minute\t:", mov_one_min.__floor__())
-    #    print("Average 5 minutes\t:", average_five.__floor__(), "\tOSC 5 minutes\t:", osc_five_min.__floor__(), "\tMOV 5 minutes\t:", mov_five_min.__floor__())
-    #    print("Average 15 minutes\t:", average_fifty.__floor__(), "\tOSC 15 minutes\t:", osc_fifty_min.__floor__(), "\tMOV 15 minutes\t:", mov_fifty_min.__floor__())
-    #    print("Time update",purchase_time)
-    #    print("dt_object =", date_stamp)
-    #    timer = average_one.__floor__()
+    
+    if timer != average_one.__floor__():
+        #print("Average 1 minute\t:", average_one.__floor__(), "\tOSC 1 minute\t:", osc_one_min.__floor__(), "\tMOV 1 minute\t:", mov_one_min.__floor__())
+        #print("Average 5 minutes\t:", average_five.__floor__(), "\tOSC 5 minutes\t:", osc_five_min.__floor__(), "\tMOV 5 minutes\t:", mov_five_min.__floor__())
+        #print("Average 15 minutes\t:", average_fifty.__floor__(), "\tOSC 15 minutes\t:", osc_fifty_min.__floor__(), "\tMOV 15 minutes\t:", mov_fifty_min.__floor__())
+        #print("Time update",purchase_time)
+        #print("dt_object =", date_stamp)
+        timer = average_one.__floor__()
+
+    if target_time <= timer:
+        target_time = timer-1
 
     #Buy conditions
 
