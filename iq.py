@@ -9,7 +9,7 @@ from iqoptionapi.stable_api import IQ_Option
 
 from indicators.indic_psar import PSAR
 
-from integrates.MoneyManavement import MoneyManager
+from addons.MoneyManavement import MoneyManager
 #from main_ui import Main_UI
 
 from currency.EURUSD import EURUSD
