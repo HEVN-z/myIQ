@@ -1,1 +1,1 @@
-py _simplebot.py
+py _simple.py
