@@ -40,6 +40,7 @@ def cmd_login():
     print('y =',root.winfo_y())
     print('width =',root.winfo_width())
     print('height =',root.winfo_height())
+    
     root.geometry('+30+30')
 
 # Widgeets
