@@ -30,6 +30,7 @@ root.geometry(str(window_width)+"x"+str(window_height)+"+"+str(window_pos_x)+"+"
 
 # Variables
 
+
 # Commands
 
 def cmd_login():
