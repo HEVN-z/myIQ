@@ -6,6 +6,7 @@
 /currency
 /_sample
 /addons
+/__pycache__
 .env
 *.lua
 *.bat
