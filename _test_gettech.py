@@ -4,11 +4,15 @@ from talib.abstract import EMA , SAR, CDL3INSIDE
 from iqoptionapi.stable_api import IQ_Option
 import time
 import numpy as np
-import sys
+import os
+from dotenv import load_dotenv
 import statistics
 
-email = "dummy.esper@gmail.com"
-password = "12651265exe"
+load_dotenv()
+
+email = os.getenv('EMAIL')
+password = os.getenv('PASSWORD')
+
 bot = IQ_Option(email,password)
 bot.connect()
 while True:
