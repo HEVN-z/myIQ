@@ -1,6 +1,6 @@
 from multiprocessing.connection import answer_challenge
 from textwrap import indent
-from talib.abstract import EMA , SAR
+from talib.abstract import EMA , SAR, CDL3INSIDE
 from iqoptionapi.stable_api import IQ_Option
 import time
 import numpy as np
@@ -68,7 +68,7 @@ while True:
 goal="EURUSD"
 size=60#size=[1,5,10,15,30,60,120,300,600,900,1800,3600,7200,14400,28800,43200,86400,604800,2592000,"all"]
 timeperiod=3
-maxdict=100
+maxdict=5
 print("start stream...")
 bot.start_candles_stream(goal,size,maxdict)
 print("Start EMA Sample")
@@ -95,12 +95,15 @@ while True:
     #print(candles)
     #print("inputs")
     #print(inputs)
-    print(inputs["close"][len(inputs["close"])-1])
+    #print(inputs["close"][len(inputs["close"])-1])
     #print(inputs["close"])
     #print(EMA(inputs, timeperiod=timeperiod))
     #print(SAR(inputs, acceleration=0.02, maximum=0.2))
     PSAR = list(SAR(inputs, acceleration=0.02, maximum=0.2))
     PPSAR = inputs["close"] - PSAR
+
+    print(CDL3INSIDE(inputs))
+
     #print(PPSAR)
     #print(SAR(inputs["high"],inputs["low"], acceleration=0.02, maximum=0.2))
     #list_range = 14
