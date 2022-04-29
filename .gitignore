@@ -1,2 +1,12 @@
-.gitignore
+/tensorflow
+/tft
+/models
+/JSON
+/indicators
+/currency
+/_sample
+/addons
 .env
+*.lua
+*.bat
+*.json

@@ -1,9 +1,12 @@
 from multiprocessing import Process
 from iqoptionapi.stable_api import IQ_Option
 import time
+import os
+from dotenv import load_dotenv
+load_dotenv()
+email = os.getenv('EMAIL')
+password = os.getenv('PASSWORD')
 
-email = "dummy.esper@gmail.com"
-password = "12651265exe"
 bot = IQ_Option(email,password)
 bot.connect()
 while True:

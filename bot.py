@@ -1,8 +1,12 @@
 import asyncio
 from iqoptionapi.stable_api import IQ_Option
 from _sample.thread_buy import buyThread as thread_buy
-email = "dummy.esper@gmail.com"
-password = "12651265exe"
+import os
+from dotenv import load_dotenv
+load_dotenv()
+email = os.getenv('EMAIL')
+password = os.getenv('PASSWORD')
+
 Iq=IQ_Option(email,password)
 Iq.connect()#connect to iqoption
 Money=1

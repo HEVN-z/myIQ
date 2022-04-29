@@ -3,11 +3,14 @@ import threading
 from iqoptionapi.stable_api import IQ_Option
 import time
 import json
+import os
 # from numba import jit, cuda
 
 
-email = "dummy.esper@gmail.com"
-password = "12651265exe"
+from dotenv import load_dotenv
+load_dotenv()
+email = os.getenv('EMAIL')
+password = os.getenv('PASSWORD')
 
 bot = IQ_Option(email,password)
 bot.connect()

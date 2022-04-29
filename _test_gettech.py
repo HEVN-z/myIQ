@@ -5,11 +5,9 @@ from iqoptionapi.stable_api import IQ_Option
 import time
 import numpy as np
 import os
+
 from dotenv import load_dotenv
-import statistics
-
 load_dotenv()
-
 email = os.getenv('EMAIL')
 password = os.getenv('PASSWORD')
 
