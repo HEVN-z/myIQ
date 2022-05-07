@@ -263,7 +263,7 @@ while True:
     print("___________________________________________________________________")
 
     #Buy   
-    if purchase_time==target_time and isBuy == False and Action != "hold":
+    if purchase_time==target_time and isBuy == False and Action == "hold":
         check, id = bot.buy(Money,Active,Action,expirations_mode)
         isBuy = True
         if check:
