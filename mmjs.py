@@ -64,6 +64,34 @@ def get_target_loss():
     json_file = json.load(open("mmjs.json",'r'))
     return json_file['target_loss']
 
+def get_Active():
+    json_file = json.load(open("mmjs.json",'r'))
+    return json_file['Active']
+
+def get_email():
+    json_file = json.load(open("mmjs.json",'r'))
+    return json_file['email']
+
+def get_password():
+    json_file = json.load(open("mmjs.json",'r'))
+    return json_file['password']
+
+def get_rate1():
+    json_file = json.load(open("mmjs.json",'r'))
+    return json_file['rate1']
+
+def get_rate5():
+    json_file = json.load(open("mmjs.json",'r'))
+    return json_file['rate5']
+
+def get_rate15():
+    json_file = json.load(open("mmjs.json",'r'))
+    return json_file['rate15']
+
+def get_rate60():
+    json_file = json.load(open("mmjs.json",'r'))
+    return json_file['rate60']
+
 ############################################################################################
 ## Write files
 ############################################################################################

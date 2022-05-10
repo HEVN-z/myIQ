@@ -5,6 +5,8 @@ from iqoptionapi.stable_api import IQ_Option
 from TI_multi import *
 from dotenv import load_dotenv
 import os
+import psutil
+
 load_dotenv()
 email = os.getenv("EMAIL")
 password = os.getenv("PASSWORD")
@@ -67,13 +69,14 @@ def get_tech_i_percentage(active):
         if run and timer == (expirations_mode*60)-10:
             percent = bot.get_all_profit()[active]['turbo']
             set_percent(active,percent)
-        if run and timer > (expirations_mode*60)+2 and timer < (expirations_mode*60)+5:
-            one, five, fifteen, sixty = get_tech_i(active)
-            print(active, one, five, fifteen, sixty,timer,(expirations_mode*60))
-            set_data(active, one, five, fifteen, sixty)
-            print(time.strftime('%H:%M:%S', time.localtime(time.time())))
+        # if run and timer > (expirations_mode*60)+2 and timer < (expirations_mode*60)+5:
+        one, five, fifteen, sixty = get_tech_i(active)
+        print(active, one, five, fifteen, sixty,timer,(expirations_mode*60))
+        set_data(active, one, five, fifteen, sixty)
+        print(time.strftime('%H:%M:%S', time.localtime(time.time())))
         # print(bot.get_remaning(15)-30,(15*60)-30)
         time.sleep(.2)
+        print("\n\t\t\t\t\t\t\t\t\t\t",psutil.Process().memory_info().rss / (1024 * 1024))
 
 if __name__ == "__main__":
     Thread(target=get_tech_i_percentage, args=("GBPUSD",)).start()
