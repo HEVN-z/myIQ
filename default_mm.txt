@@ -1,0 +1,20 @@
+{
+    "amount": {
+        "base_amount": 1,
+        "order_amount": 0,
+        "total_amount": 0
+    },
+    "profit": {
+        "today_total_profit": 0,
+        "profit_target": 0.25
+    },
+    "martingale": {
+        "level": 0,
+        "max_level": 2,
+        "min_level": -5,
+        "multiplier": 2.25,
+        "anti_multiplier": 1.25
+    },
+    "target_goal": 150,
+    "target_loss": 30
+}
