@@ -15,8 +15,8 @@ gc.enable()
 T = Thread
 from dotenv import load_dotenv
 load_dotenv()
-email = os.getenv('EMAIL')
-password = os.getenv('PASSWORD')
+email = mm.get_email()
+password = mm.get_password()
 
 bot = IQ_Option(email,password)
 bot.connect()
@@ -37,6 +37,7 @@ rate1 = mm.get_rate1()
 rate5 = mm.get_rate5()
 rate15 = mm.get_rate15()
 rate60 = mm.get_rate60()
+average1,average5,average15,average60 = 0,0,0,0
 
 balance = bot.get_balance()
 print("Your balance is",balance,"\n What market you want to auto trade")
@@ -49,12 +50,12 @@ else:
     Money = float(Money)
     print("Your money is",Money)
 mm.set_base_amount(Money)
-mm.set_order_amount(Money)
 
 reset = input("Reset (Y/N): ")
-if reset.upper == "Y":
+if reset.upper() == "Y":
     mm.set_today_profit(0)
     mm.set_martingale_level(0)
+    mm.set_order_amount(Money)
     print("Reset!")
 else:
     print("no reset")
@@ -107,6 +108,7 @@ def get_tech_ind_percentage(indicator, expire_time, type):
     total = item_buy + item_hold + item_sell
     return (item_buy - item_sell) / total * 100
 indicator = None
+
 def get_tech_i(active):
     global indicator
     indicator = bot.get_technical_indicators(active)
@@ -255,7 +257,7 @@ while True:
     # else:
     #     Action = "hold"
 
-    Action = check_buy()
+    Action = check_buy(average1,average5,average15)
     # print(Action, Active,time_count,purchase_time,target_time," ===== ",rate1,"%" , average1,"% ==== ",rate2,"%" , average5,"% ===== ",rate3,"%" , average15,"%")
     
     #Buy   
