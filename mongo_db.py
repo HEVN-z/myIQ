@@ -23,6 +23,5 @@ no = y['no']
 print(name)
 print(no)
 end = time.time()
-
 print(end-start)
 
