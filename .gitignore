@@ -11,3 +11,4 @@ uid.txt
 .env
 *.lua
 *.json
+update_git.bat
