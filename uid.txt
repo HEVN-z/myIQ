@@ -1,2 +1,0 @@
-email = dummy.esper@gmail.com
-password = 12651265exe
