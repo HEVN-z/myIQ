@@ -14,10 +14,10 @@ password = os.getenv("PASSWORD")
 iq_bot = IQ_Option(email,password)
 
 iq_bot.connect()
-goal="EURUSD-OTC"
+goal="EURUSD"
 size=60#size=[1,5,10,15,30,60,120,300,600,900,1800,3600,7200,14400,28800,43200,86400,604800,2592000,"all"]
 timeperiod=10
-maxdict=20
+maxdict=10
 iq_bot.start_candles_stream(goal,size,maxdict)
 
 #create figure
@@ -57,7 +57,7 @@ def animation(gg):
     for i in range(len(inputs['time'])):
         inputs['index'] = np.append(inputs['index'], i)
 
-    print(inputs['index'])
+    # print(inputs['index'])
 
     #define width of candlestick elements
     width = .4
@@ -124,7 +124,7 @@ def animation(gg):
     ax.bar(down_candle['index'],down_candle['high']-down_candle['open'],width2,bottom=down_candle['open'],color=col2)
     ax.bar(down_candle['index'],down_candle['low']-down_candle['close'],width2,bottom=down_candle['close'],color=col2)
 
-    ax.plot(inputs['index'],inputs['close'],color='black')
+    # ax.plot(inputs['index'],inputs['close'],color='black')
 
     # plt.cla()
     
