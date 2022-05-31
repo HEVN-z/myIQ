@@ -6,6 +6,7 @@ from TI_multi import *
 from dotenv import load_dotenv
 import os
 import psutil
+import gc
 
 load_dotenv()
 email = os.getenv("EMAIL")
@@ -58,10 +59,15 @@ def get_tech_i(active):
     av5 = (osc5 + ma5) / 2
     av15 = (osc15 + ma15) / 2
     av60 = (osc60 + ma60) / 2
+    del indicator
+    gc.collect()
     return round(av1,2), round(av5,2), round(av15,2), round(av60,2)
 
 def get_tech_i_percentage(active):
+    print('Starting ...',active)
     run = bot.get_all_open_time()['turbo'][active]['open']
+    one, five, fifteen, sixty = get_tech_i(active)
+    set_data(active, one, five, fifteen, sixty)
     while True:
         timer = bot.get_remaning(expirations_mode)
         if bot.get_remaning(15) == (15*60)-10:
@@ -69,10 +75,12 @@ def get_tech_i_percentage(active):
         if run and timer == (expirations_mode*60)-10:
             percent = bot.get_all_profit()[active]['turbo']
             set_percent(active,percent)
+        if run and timer == (expirations_mode*60)-30:
+            one, five, fifteen, sixty = get_tech_i(active)
+            set_data(active, one, five, fifteen, sixty)
         # if run and timer > (expirations_mode*60)+2 and timer < (expirations_mode*60)+5:
-        one, five, fifteen, sixty = get_tech_i(active)
+        # one, five, fifteen, sixty = get_tech_i(active)
         print(active, one, five, fifteen, sixty,timer,(expirations_mode*60))
-        set_data(active, one, five, fifteen, sixty)
         print(time.strftime('%H:%M:%S', time.localtime(time.time())))
         # print(bot.get_remaning(15)-30,(15*60)-30)
         time.sleep(.2)
