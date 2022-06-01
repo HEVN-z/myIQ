@@ -24,7 +24,7 @@ while True:
         print(type(time.time()))
         print('time   : ',time.localtime(s).tm_min,time.localtime(s).tm_sec)
         print('real   : ',time.localtime(time.time()).tm_min,time.localtime(time.time()).tm_sec)
-        print('remain : ',(bot.get_remaning(1) - 90) *-1)
+        print('remain : ',(bot.get_remaning(1) - 60) *-1)
 
         # print(candles[timestamp]['open'])
         # print(candles[timestamp]['max'])
