@@ -22,9 +22,9 @@ while True:
         print('\n\n')
         print(type(s))
         print(type(time.time()))
-        # print('time   : %S',time.strftime(time.localtime(s)))
-        # print('real   : %S',time.strftime(time.localtime(time.time())))
-        print('remain : ',bot.get_remaning(1) - 90 *-1)
+        print('time   : ',time.localtime(s).tm_min,time.localtime(s).tm_sec)
+        print('real   : ',time.localtime(time.time()).tm_min,time.localtime(time.time()).tm_sec)
+        print('remain : ',(bot.get_remaning(1) - 90) *-1)
 
         # print(candles[timestamp]['open'])
         # print(candles[timestamp]['max'])
