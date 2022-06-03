@@ -20,8 +20,10 @@ while True:
         # print(candles[timestamp]['from'])
         s = int(candles[timestamp]['to'])
         print('\n\n')
-        print('time   : %S',time.strftime(time.localtime(s)))
-        print('real   : %S',time.strftime(time.localtime(time.time())))
+        print(type(s))
+        print(type(time.time()))
+        # print('time   : %S',time.strftime(time.localtime(s)))
+        # print('real   : %S',time.strftime(time.localtime(time.time())))
         print('remain : ',bot.get_remaning(1) - 90 *-1)
 
         # print(candles[timestamp]['open'])
