@@ -13,7 +13,7 @@ start = time.time()
 db = client['test']
 # collection = db['test']
 history = db['history']
-history.insert_one({"_id":1,"name": "Alice"})
+# history.insert_one({"_id":1,"name": "Alice"})
 history.update_one({"_id":1},{"$set":{"no": "126354"}})
 history.update_one({"_id":1},{"$set":{"name": "Alice"}})
 # start = time.time()
