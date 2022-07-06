@@ -3,6 +3,8 @@ from threading import Thread
 import time
 from dotenv import load_dotenv
 import os
+from pymongo import MongoClient
+
 load_dotenv()
 email = os.getenv("EMAIL")
 password = os.getenv("PASSWORD")
